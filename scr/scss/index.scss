@@ -1,0 +1,52 @@
+// .container
+// .content
+
+@import "header.scss";
+@import "filters.scss";
+@import "real.scss";
+@import "footer.scss";
+@import "modalBasket.scss";
+@import "modalInfo.scss";
+
+body {
+  padding: 0;
+  margin: 0;
+}
+// ОБЩИЕ СТИЛИ
+.content {
+  display: grid;
+  grid-template-columns: 20% 1fr;
+  grid-gap: 2vw
+}
+
+.container {
+  margin: 0 auto;
+}
+
+// Мелкие девайсы («таблетки», >= 576px)
+@media (min-width: 576px) {
+  .container {
+    width: 320px;
+  }
+}
+
+// Средние девайсы («таблетки», >= 768px)
+@media (min-width: 768px) {
+  .container {
+    width: 450px;
+  }
+}
+
+// Большие девайсы (десктопы, >= 992px)
+@media (min-width: 992px) {
+  .container {
+    width: 768px;
+  }
+}
+
+// Экстрабольшие девайсы (большие десктопы, >= 1200px)
+@media (min-width: 1200px) {
+  .container {
+    width: 1024px;
+  }
+}

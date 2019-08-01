@@ -1,0 +1,16 @@
+// .real
+// .offers
+// .offer
+// .thumb
+// .description
+// .address
+// .price
+
+.offer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 1vw;
+}
+.img-thumb {
+  height: 150px;
+}

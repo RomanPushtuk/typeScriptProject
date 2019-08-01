@@ -1,0 +1,16 @@
+// .filters
+// .filters-fix
+// .filters-info
+// .filters-select
+// .search-real
+
+.filters-fix {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
+  position: fixed;
+  .filters-select, .search-real {
+    height: 30px;
+  }
+}

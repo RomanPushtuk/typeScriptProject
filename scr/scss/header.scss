@@ -1,0 +1,11 @@
+.header {
+  position: fixed;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  z-index: 9999;
+  width: 1024px;
+  background-color: #dedede;
+}
+.header-fixed {
+  padding-bottom: 90px;
+}
