@@ -1,0 +1,30 @@
+// .modal-info
+// .close-modal-info
+// .main-area
+// .modal-info-img
+// .description
+// .modal-info-panel
+
+.modal-info {
+  display: none;
+  position: fixed;
+  top: 15%;
+  left: 50%;
+  margin-left: -160px;
+  width: 320px;
+  // background-color: red;
+
+  .main-area {
+    margin: 0 auto;
+
+    .modal-info-img {
+      display: block;
+      width: 320px;
+    }
+
+    .modal-info-panel {
+      display: grid;
+      grid-template-columns: 1fr 30%;
+    }
+  }
+}

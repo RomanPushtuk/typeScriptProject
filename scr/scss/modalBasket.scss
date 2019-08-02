@@ -1,0 +1,23 @@
+// .modal-basket
+// .offers-basket
+.modal-basket {
+  display: none;
+  position: fixed;
+  top: 15%;
+  left: 50%;
+  margin-left: -160px;
+  width: 320px;
+  height: 500px;
+  .offers-basket {
+     overflow-y: scroll;
+     height: 400px;
+     img {
+       height: 50px;
+     }
+    .offer-basket {
+      // overflow-y: scroll;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+  }
+}

@@ -7,11 +7,14 @@
 @import "footer.scss";
 @import "modalBasket.scss";
 @import "modalInfo.scss";
+@import "pagination.scss";
 
 body {
   padding: 0;
   margin: 0;
 }
+
+
 // ОБЩИЕ СТИЛИ
 .content {
   display: grid;
@@ -22,6 +25,30 @@ body {
 .container {
   margin: 0 auto;
 }
+
+.show-more {
+  height: 300px;
+  overflow: hidden;
+}
+
+// Включение и выключение modalInfo
+.disabled {
+  opacity: 0;
+  display: none;
+}
+
+.modal-active {
+  display: block;
+}
+
+.close-modal{
+  width: auto;
+  float: right;
+  &:hover {
+    cursor: pointer;
+  }
+}
+// Включение и выключение modalInfo конец
 
 // Мелкие девайсы («таблетки», >= 576px)
 @media (min-width: 576px) {
