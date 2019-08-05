@@ -11,11 +11,13 @@
   top: 15%;
   left: 50%;
   margin-left: -160px;
-  width: 320px;
+  width: 348px;
   // background-color: red;
 
   .main-area {
     margin: 0 auto;
+    height: 400px;
+    overflow-y: scroll;
 
     .modal-info-img {
       display: block;

@@ -1,10 +1,37 @@
+// .header
+//   .logo
+//   .basket
+// .header-fixed
+
+
 .header {
   position: fixed;
   display: grid;
   grid-template-columns: 1fr 1fr;
   z-index: 9999;
+  background-color: #3d5d9e;
   width: 1024px;
-  background-color: #dedede;
+
+  .logo {
+    font-family: Segoe UI;
+    margin-left: 15px;
+    color: #fff;
+  }
+
+  .basket {
+    font-family: Segoe UI;
+    color: #fff;
+    text-align: right;
+
+    span {
+      padding-top: 26px;
+      margin-right: 15px;
+      display: block;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
 }
 .header-fixed {
   padding-bottom: 90px;

@@ -1,4 +1,9 @@
+import query from "../interface/query";
 class Filters {
+  filtersCountry:HTMLSelectElement;
+  filtersSity:HTMLInputElement;
+  searchReal:HTMLButtonElement;
+
   constructor() {
     // ----------- filters.hbs -------------
     this.filtersCountry = document.getElementById("filters-country");
@@ -7,7 +12,7 @@ class Filters {
     // ----------- filters.hbs end -------------
   }
 
-  getData() {
+  getData():query {
     return {
       sity: this.filtersSity.value.toLowerCase(),
       country: this.filtersCountry.value

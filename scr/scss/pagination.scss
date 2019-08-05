@@ -3,5 +3,14 @@
 .pagination {
   .pages {
     text-align: center;
+    font-family: Segoe UI;
+
+    span {
+      padding: 10px 15px;
+      &:hover {
+        cursor: pointer;
+        background-color: #f2f2f2;
+      }
+    }
   }
 }

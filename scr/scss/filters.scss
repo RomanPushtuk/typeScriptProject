@@ -9,8 +9,29 @@
   grid-template-rows: 1fr;
   grid-template-columns: 1fr;
   grid-gap: 10px;
+  margin-left: 15px;
   position: fixed;
+
+  .filters-info {
+    text-align: center;
+    font-family: Segoe UI;
+  }
   .filters-select, .search-real {
     height: 30px;
+  }
+
+  input, select {
+    font-family: Segoe UI;
+    background: #f2f2f2;
+    border: 0;
+    margin: 0 0 15px;
+    font-size: 14px;
+  }
+
+  button {
+    font-family: Segoe UI;
+    text-transform: uppercase;
+    font-size: 14px;
+    cursor: pointer;
   }
 }

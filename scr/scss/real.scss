@@ -8,8 +8,28 @@
 
 .offer {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 1vw;
+  grid-template-columns: 1fr 40% 16% 16%;
+  grid-column-gap: 1vw;
+  font-family: Segoe UI;
+  font-size: 14px;
+  margin-bottom: 10px;
+
+  .img-thumb:hover {
+    cursor: pointer;
+  }
+  .summary {
+    margin-left: 15px;
+  }
+  .price {
+    font-weight: bold;
+    text-align: center;
+  }
+  .goto {
+    text-align: right;
+    a {
+      margin-right: 15px;
+    }
+  }
 }
 .img-thumb {
   height: 100px;

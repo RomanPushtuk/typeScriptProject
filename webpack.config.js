@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   mode: "development",
-  entry: "./index.js",
+  entry: "./index.ts",
   output: {
     filename: "main.js",
     path: path.join(__dirname, "/public")
@@ -15,8 +15,7 @@ module.exports = {
   },
   devtool: "cheap-eval-source-map",
   resolve: {
-    // modulesDirectories: ["node_modules"],
-    extensions: [".ts", ".js"]
+    extensions: [".tsx", ".ts", ".js"]
   },
   module: {
     rules: [

@@ -1,23 +1,26 @@
 const fetchJsonp = require("../../node_modules/fetch-jsonp/build/fetch-jsonp.js");
 
-export function createBasket({ img, url, description, price }) {
+import bigData from "./interface/bigData";
+import smallData from "./interface/smallData";
+
+export function createBasket({ img_url, lister_url, summary, price_formatted }:smallData) {
   // Создаем строку
   const offerElement = document.createElement("div");
   offerElement.classList.add("offer-basket");
 
   const imgElement = document.createElement("img");
   imgElement.classList.add("img-thumb");
-  imgElement.setAttribute("src", img);
+  imgElement.setAttribute("src", img_url);
 
   const descriptionElement = document.createElement("div");
-  descriptionElement.innerText = description;
+  descriptionElement.innerText = summary;
 
   const priceElement = document.createElement("div");
-  priceElement.innerText = price;
+  priceElement.innerText = price_formatted;
 
   const listerUrl = document.createElement("a");
   listerUrl.innerText = "Перейти";
-  listerUrl.setAttribute("href", url);
+  listerUrl.setAttribute("href", lister_url);
   listerUrl.setAttribute("target", "_blank");
   const listerUrlDiv = document.createElement("div");
   listerUrlDiv.appendChild(listerUrl);
@@ -25,8 +28,8 @@ export function createBasket({ img, url, description, price }) {
   const delateDiv = document.createElement("div");
   const deleteButton = document.createElement("button");
   deleteButton.innerText = "X";
-  deleteButton.addEventListener("click", () =>{
-    this.emit("delete-from-basket", url);
+  deleteButton.addEventListener("click", () => {
+    this.emit("delete-from-basket", lister_url);
   });
   delateDiv.appendChild(deleteButton);
 
@@ -38,30 +41,34 @@ export function createBasket({ img, url, description, price }) {
   return offerElement;
 }
 
-export function createRecord({ img, url, description, price }) {
+export function createRecord(obj:bigData) {
+  const { img_url, lister_url, summary, price_formatted } = obj;
   // Создаем строку
   const offerElement = document.createElement("div");
   offerElement.classList.add("offer");
 
   const imgElement = document.createElement("img");
   imgElement.classList.add("img-thumb");
-  imgElement.setAttribute("src", img);
+  imgElement.setAttribute("src", img_url);
   imgElement.addEventListener("click", () => {
-    this.emit("overview", { img, url, description, price });
+    this.emit("overview", obj);
   });
 
   const descriptionElement = document.createElement("div");
-  descriptionElement.innerText = description;
+  descriptionElement.classList.add("summary");
+  descriptionElement.innerText = summary;
 
   const priceElement = document.createElement("div");
-  priceElement.innerText = price;
+  priceElement.innerText = price_formatted;
+  priceElement.classList.add("price");
 
   const listerUrl = document.createElement("a");
   listerUrl.innerText = "Перейти";
-  listerUrl.setAttribute("href", url);
+  listerUrl.setAttribute("href", lister_url);
   listerUrl.setAttribute("target", "_blank");
   const listerUrlDiv = document.createElement("div");
   listerUrlDiv.appendChild(listerUrl);
+  listerUrlDiv.classList.add("goto");
 
   offerElement.appendChild(imgElement);
   offerElement.appendChild(descriptionElement);
@@ -70,18 +77,21 @@ export function createRecord({ img, url, description, price }) {
   return offerElement;
 }
 // Созраняем данные
-export function save(data) {
+export function save(data:Array<smallData>) {
   localStorage.setItem("basket", JSON.stringify(data));
 }
 
-export function loadBasket() {
-  if (localStorage.getItem("basket")) {
-    return JSON.parse(localStorage.getItem("basket"));
+export function loadBasket():Array<smallData> {
+  console.log("loadBasket");
+  if (!localStorage.getItem("basket")) {
+    localStorage.setItem("basket", JSON.stringify(""));
   }
+  return JSON.parse(localStorage.getItem("basket"));
 }
 
-export async function load(page = 1, place_name = "london", country = "uk") {
-  let url;
+export async function load(page:number = 1, place_name:string = "london", country:string = "uk"):Promise<Array<bigData>> {
+  console.log("load");
+  let url:string;
   if (country === "uk") {
     url = `https://api.nestoria.co.uk/api?encoding=json&pretty=1&page=${page}&action=search_listings&country=uk&listing_type=buy&place_name=${place_name}`;
   }
@@ -95,12 +105,16 @@ export async function load(page = 1, place_name = "london", country = "uk") {
     const response = await fetchJsonp(url);
     const result = await response.json();
     return result.response.listings.map(item => {
-      const { img_url, summary, price_formatted, lister_url } = item;
+      const { img_url, lister_url, summary, price_formatted, title ,keywords ,bathroom_number ,bedroom_number }:bigData = item;
       return {
-        img: img_url,
-        description: summary,
-        price: price_formatted,
-        url: lister_url
+        img_url,
+        lister_url,
+        summary,
+        price_formatted,
+        title,
+        keywords,
+        bathroom_number,
+        bedroom_number,
       };
     });
   }

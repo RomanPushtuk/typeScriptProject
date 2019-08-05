@@ -1,26 +1,36 @@
 import EventEmitter from "./EventEmitter";
-import Modal from "./components/Modal.ts";
+import Modal from "./components/Modal";
 import Filters from "./components/Filters";
 import Pagination from "./components/Pagination";
 import Basket from "./components/Basket";
-import { createRecord, createBasket } from "./helpers";
+import Offers from "./components/Offers";
+
+import bigData from "./interface/bigData";
+import smallData from "./interface/smallData";
 
 class View extends EventEmitter {
+  modal:Modal;
+  filters:Filters;
+  pagination:Pagination;
+  basket:Basket;
+  offers:Offers;
+
   constructor() {
     super();
+    console.log("View");
     // ------------ index.hbs ------------
     // this.container = document.getElementById("container");
     // ---------------real.hbs-------------------------
-    this.offers = document.getElementById("offers");
 
     this.modal = new Modal();
     this.filters = new Filters();
     this.pagination = new Pagination();
     this.basket = new Basket();
+    this.offers = new Offers();
 
     this.pagination.nextPage.addEventListener("click", this.handlerNextPage.bind(this));
     this.pagination.previousPage.addEventListener("click", this.handlerPreviousPage.bind(this));
-    this.pagination.showMore.addEventListener("click", this.handlerShowMore.bind(this));
+    this.pagination.showMoreEl.addEventListener("click", this.handlerShowMore.bind(this));
     this.filters.searchReal.addEventListener("click", this.handlerSearch.bind(this));
     this.modal.closeModalInfo.addEventListener("click", this.handlerCloseModalInfo.bind(this));
     this.modal.inBasket.addEventListener("click", this.handlerAddToBasket.bind(this));
@@ -29,61 +39,58 @@ class View extends EventEmitter {
   }
 
   // Поиск по введенным фильтрам
-  handlerSearch(){
+  handlerSearch() {
     this.emit("search", this.filters.getData());
   }
 
   // Загрузить слtдующую страницу
-  handlerNextPage(){
+  handlerNextPage() {
     this.emit("new-page", this.pagination.getNextPage());
   }
 
   // Загрузить предыдущую страницу
-  handlerPreviousPage(){
+  handlerPreviousPage() {
     this.emit("new-page", this.pagination.getPreviousPage());
   }
 
   // Открыть карзину
-  handlerOpenBasket(){
+  handlerOpenBasket() {
     this.basket.openModalBasket();
   }
 
   // Добавить в карзину
   handlerAddToBasket() {
-    this.emit("add-to-basket", this.modal.data);
+    this.emit("add-to-basket", this.modal.dataForBasket);
   }
 
   // Загрузить данные в карзину
-  createBasket(myOffers){
+  createBasket(myOffers:Array<smallData>) {
     this.basket.createBasket(myOffers);
   }
 
   // Закрыть карзину
-  handlerCloseBasket(){
+  handlerCloseBasket() {
     this.basket.closeBasket();
   }
 
   // Открыть модальное окно
-  handlerOpenModalInfo(obj){
+  openModalInfo(obj:bigData) {
     this.modal.openModal(obj);
   }
 
   // Закрыть модальное окно
-  handlerCloseModalInfo(){
+  handlerCloseModalInfo() {
     this.modal.closeModal();
   }
 
-  handlerShowMore(){
-    this.offers.classList.remove("show-more");
+  handlerShowMore() {
+    console.log("clik");
+    this.offers.offers.classList.remove("show-more");
     this.pagination.showMore();
   }
 
-  async showOffers(data) {
-    const obj = await data;
-    this.offers.innerHTML = "";
-    obj.forEach(item => {
-      this.offers.appendChild(createRecord.call(this, item));
-    });
+  showOffers(obj:Array<bigData>) {
+    this.offers.showOffers(obj);
   }
 }
 export default View;
