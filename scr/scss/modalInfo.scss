@@ -11,13 +11,35 @@
   top: 15%;
   left: 50%;
   margin-left: -160px;
-  width: 348px;
+  width: 338px;
   // background-color: red;
+  .close-modal {
+    width: 100%;
+    text-align: right;
+    display:block;
+    box-sizing:border-box;
+    width:20px;
+    height:20px;
+    border-width:3px;
+    border-style: solid;
+    border-color:#3d5d9e;
+    border-radius:100%;
+    background: -webkit-linear-gradient(-45deg, transparent 0%, transparent 46%, white 46%,  white 56%,transparent 56%, transparent 100%), -webkit-linear-gradient(45deg, transparent 0%, transparent 46%, white 46%,  white 56%,transparent 56%, transparent 100%);
+    background-color: #3d5d9e;
+    transition: all 0.3s ease;
+    margin-bottom: 5px;
+    margin-left: 320px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 
   .main-area {
     margin: 0 auto;
     height: 400px;
     overflow-y: scroll;
+    font-family: Segoe UI;
 
     .modal-info-img {
       display: block;
@@ -28,5 +50,14 @@
       display: grid;
       grid-template-columns: 1fr 30%;
     }
+  }
+
+  button {
+    font-family: Segoe UI;
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 5px 15px;
+    margin-top: 5px;
+    margin-left: 100px;
   }
 }

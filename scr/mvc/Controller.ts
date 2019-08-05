@@ -50,4 +50,5 @@ class Controller {
     this.view.createBasket(myOffers);
   }
 }
+
 export default Controller;

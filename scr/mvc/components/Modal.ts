@@ -45,8 +45,8 @@ class Modal {
     this.modalInfoPrice.innerText = price_formatted;
     this.modalInfoTitle.innerText = title;
     this.modalInfoKeywords.innerText = keywords;
-    this.modalInfoBedroom.innerText = bedroom_number;
-    this.modalInfoBathroom.innerText = bathroom_number;
+    this.modalInfoBedroom.innerText = String(bedroom_number);
+    this.modalInfoBathroom.innerText = String(bathroom_number);
     this.data = obj;
     this.dataForBasket = { img_url, lister_url, summary, price_formatted };
   }

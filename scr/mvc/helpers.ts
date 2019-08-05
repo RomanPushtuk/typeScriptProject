@@ -16,6 +16,7 @@ export function createBasket({ img_url, lister_url, summary, price_formatted }:s
   descriptionElement.innerText = summary;
 
   const priceElement = document.createElement("div");
+  priceElement.classList.add("price");
   priceElement.innerText = price_formatted;
 
   const listerUrl = document.createElement("a");
@@ -28,6 +29,7 @@ export function createBasket({ img_url, lister_url, summary, price_formatted }:s
   const delateDiv = document.createElement("div");
   const deleteButton = document.createElement("button");
   deleteButton.innerText = "X";
+  deleteButton.classList.add("madal-delete-item");
   deleteButton.addEventListener("click", () => {
     this.emit("delete-from-basket", lister_url);
   });

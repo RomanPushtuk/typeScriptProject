@@ -1,13 +1,42 @@
 // .modal-basket
 // .offers-basket
+// .madal-delete-item
+
 .modal-basket {
   display: none;
   position: fixed;
   top: 15%;
   left: 50%;
   margin-left: -160px;
-  width: 320px;
+  width: 338px;
   height: 500px;
+  font-family: Segoe UI;
+  font-size: 14px;
+
+  h2 {
+    text-align: center;
+  }
+
+  .close-modal {
+    width: 100%;
+    text-align: right;
+    display:block;
+    box-sizing:border-box;
+    width:20px;
+    height:20px;
+    border-width:3px;
+    border-style: solid;
+    border-color:#3d5d9e;
+    border-radius:100%;
+    background: -webkit-linear-gradient(-45deg, transparent 0%, transparent 46%, white 46%,  white 56%,transparent 56%, transparent 100%), -webkit-linear-gradient(45deg, transparent 0%, transparent 46%, white 46%,  white 56%,transparent 56%, transparent 100%);
+    background-color: #3d5d9e;
+    transition: all 0.3s ease;
+    margin-bottom: 5px;
+    margin-left: 320px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
   .offers-basket {
      overflow-y: scroll;
      height: 400px;
@@ -17,7 +46,19 @@
     .offer-basket {
       // overflow-y: scroll;
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 25% 25% 20% 20% 10%;
+
+      .madal-delete-item {
+        border-radius: 50%;
+        border: none;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .price {
+        font-weight: bold;
+      }
     }
   }
 }
